@@ -1,4 +1,13 @@
 import { LLMModel } from "../client/api";
+// 添加DeepSeek支持
+declare module "../client/api" {
+  interface LLMModel {
+    provider?: {
+      id: string;
+      providerName: string;
+    };
+  }
+}
 import { DalleQuality, DalleStyle, ModelSize } from "../typing";
 import { getClientConfig } from "../config/client";
 import {
@@ -64,8 +73,8 @@ export const DEFAULT_CONFIG = {
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
-    model: "gpt-4o-mini" as ModelType,
-    providerName: "OpenAI" as ServiceProvider,
+    model: "deepseek-chat" as ModelType,
+    providerName: "DeepSeek" as ServiceProvider,
     temperature: 0.5,
     top_p: 1,
     max_tokens: 4000,
